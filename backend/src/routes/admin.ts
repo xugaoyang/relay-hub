@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import type { Request, Response, NextFunction } from 'express'
-import { getPlatforms, getPlatformById, upsertPlatform, deletePlatform, readDB } from '../db'
-import type { Platform } from '../types'
+import { getPlatforms, getPlatformById, upsertPlatform, deletePlatform, readDB, replaceDB } from '../db'
+import type { DB, Platform } from '../types'
 
 const router = Router()
 
@@ -85,6 +85,31 @@ router.delete('/platforms/:id', (req, res) => {
   if (!existing) return res.status(404).json({ error: 'Not found' })
   deletePlatform(req.params.id)
   return res.json({ ok: true })
+})
+
+// GET /api/admin/export —— 下载完整 db.json 备份
+router.get('/export', (_req, res) => {
+  const db = readDB()
+  res.setHeader('Content-Type', 'application/json; charset=utf-8')
+  res.setHeader('Content-Disposition', `attachment; filename="relay-hub-db-${Date.now()}.json"`)
+  res.send(JSON.stringify(db, null, 2))
+})
+
+// POST /api/admin/import?confirm=yes —— 全量覆盖 db.json（自动备份当前版本）
+router.post('/import', (req, res) => {
+  if (req.query.confirm !== 'yes') {
+    return res.status(400).json({ error: 'append ?confirm=yes to overwrite the database' })
+  }
+  const body = req.body as Partial<DB>
+  if (!body || !Array.isArray(body.platforms) || !Array.isArray(body.clicks)) {
+    return res.status(400).json({ error: 'invalid db payload: expect { platforms: [], clicks: [] }' })
+  }
+  try {
+    replaceDB(body as DB)
+    return res.json({ ok: true, platforms: body.platforms.length, clicks: body.clicks.length })
+  } catch (e) {
+    return res.status(400).json({ error: (e as Error).message })
+  }
 })
 
 // GET /api/admin/stats

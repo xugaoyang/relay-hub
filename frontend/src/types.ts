@@ -2,6 +2,8 @@ export type PlatformStatus = 'online' | 'degraded' | 'offline' | 'unknown'
 
 export type AccessType = 'direct' | 'proxy' | 'both'
 
+export type PlatformCategory = 'relay' | 'inference' | 'aggregator'
+
 export interface SubscriptionPlan {
   name: string
   price: string
@@ -36,6 +38,7 @@ export interface Platform {
   keyModels: string[]
   paymentMethods: string[]
   since?: string
+  category?: PlatformCategory
   featured: boolean
   sortOrder: number
   status: PlatformStatus

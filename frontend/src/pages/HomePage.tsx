@@ -11,6 +11,12 @@ const ACCESS_LABEL: Record<string, { label: string; cls: string }> = {
   both:   { label: '均可访问', cls: 'text-sky-400 bg-sky-900/30 border-sky-800/50' },
 }
 
+const CATEGORY_LABEL: Record<string, { label: string; cls: string }> = {
+  relay:      { label: '中转站', cls: 'text-indigo-400 bg-indigo-900/30 border-indigo-800/50' },
+  inference:  { label: '推理平台', cls: 'text-purple-400 bg-purple-900/30 border-purple-800/50' },
+  aggregator: { label: '全球聚合', cls: 'text-cyan-400 bg-cyan-900/30 border-cyan-800/50' },
+}
+
 const PRICING_LABEL: Record<string, string> = {
   prepaid: '充值预付', postpaid: '按量后付', free: '完全免费', mixed: '混合计费',
 }
@@ -46,7 +52,12 @@ function PlatformCard({ p }: { p: Platform }) {
             <h3 className="font-semibold text-white text-sm">{p.name}</h3>
             <StatusBadge status={p.status} />
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            {p.category && CATEGORY_LABEL[p.category] && (
+              <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${CATEGORY_LABEL[p.category].cls}`}>
+                {CATEGORY_LABEL[p.category].label}
+              </span>
+            )}
             <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${access.cls}`}>{access.label}</span>
             {p.latency && (
               <span className={`text-[10px] ${p.latency < 500 ? 'text-emerald-400' : p.latency < 1500 ? 'text-amber-400' : 'text-red-400'}`}>
@@ -111,6 +122,7 @@ export function HomePage() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState<'all' | 'online' | 'featured'>('all')
+  const [categoryFilter, setCategoryFilter] = useState<'all' | 'relay' | 'inference' | 'aggregator'>('all')
 
   useEffect(() => {
     fetchPlatforms().then(setPlatforms).catch(console.error).finally(() => setLoading(false))
@@ -120,7 +132,8 @@ export function HomePage() {
     const matchSearch = !search || p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.tags.some(t => t.includes(search)) || p.description.includes(search)
     const matchFilter = filter === 'all' || (filter === 'online' && p.status === 'online') || (filter === 'featured' && p.featured)
-    return matchSearch && matchFilter
+    const matchCategory = categoryFilter === 'all' || p.category === categoryFilter || (!p.category && categoryFilter === 'relay')
+    return matchSearch && matchFilter && matchCategory
   })
 
   const online = platforms.filter(p => p.status === 'online').length
@@ -148,25 +161,44 @@ export function HomePage() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
-            <input
-              type="text"
-              placeholder="搜索平台名称、标签..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
-            />
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+              <input
+                type="text"
+                placeholder="搜索平台名称、标签..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="w-full bg-slate-800/50 border border-slate-700 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+              />
+            </div>
+            <div className="flex gap-2">
+              {(['all', 'online', 'featured'] as const).map(f => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`px-3 py-2 rounded-lg text-sm transition-colors ${filter === f ? 'bg-indigo-600 text-white' : 'border border-slate-700 text-slate-400 hover:text-slate-200'}`}
+                >
+                  {{ all: '全部', online: '在线', featured: '推荐' }[f]}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="flex gap-2">
-            {(['all', 'online', 'featured'] as const).map(f => (
+          <div className="flex gap-2 flex-wrap">
+            <span className="text-xs text-slate-500 self-center">类型：</span>
+            {([
+              { key: 'all',        label: '全部平台' },
+              { key: 'relay',      label: '🔗 中转站' },
+              { key: 'aggregator', label: '🌐 全球聚合' },
+              { key: 'inference',  label: '⚡ 推理平台' },
+            ] as const).map(({ key, label }) => (
               <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors ${filter === f ? 'bg-indigo-600 text-white' : 'border border-slate-700 text-slate-400 hover:text-slate-200'}`}
+                key={key}
+                onClick={() => setCategoryFilter(key)}
+                className={`px-3 py-1.5 rounded-lg text-xs transition-colors ${categoryFilter === key ? 'bg-slate-600 text-white' : 'border border-slate-700 text-slate-400 hover:text-slate-200'}`}
               >
-                {{ all: '全部', online: '在线', featured: '推荐' }[f]}
+                {label}
               </button>
             ))}
           </div>

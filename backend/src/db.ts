@@ -19,7 +19,7 @@ const INITIAL_PLATFORMS: Platform[] = [
     website: 'https://aihubmix.com',
     apiBaseUrl: 'https://aihubmix.com/v1',
     registerUrl: 'https://aihubmix.com?aff=YOUR_CODE',
-    inviteCode: '',
+    inviteCode: 'RTNj',
     dashboardUrl: 'https://aihubmix.com/token',
     docUrl: 'https://doc.aihubmix.com',
     tags: ['国内直连', '100+模型', 'GPT', 'Claude', 'Gemini'],
@@ -70,6 +70,7 @@ const INITIAL_PLATFORMS: Platform[] = [
     keyModels: ['Claude 3.5 Sonnet', 'GPT-4o', 'Gemini 1.5 Pro', 'Llama 3.1 405B', 'DeepSeek V3'],
     paymentMethods: ['信用卡', 'Crypto'],
     since: '2023-01',
+    category: 'aggregator',
     featured: true, sortOrder: 3,
   }),
   makePlatform({
@@ -178,7 +179,7 @@ const INITIAL_PLATFORMS: Platform[] = [
     website: 'https://cubence.com',
     apiBaseUrl: 'https://cubence.com/v1',
     registerUrl: 'https://cubence.com/signup?code=YOUR_CODE',
-    inviteCode: '',
+    inviteCode: 'SCAN84H5',
     dashboardUrl: 'https://cubence.com/dashboard',
     docUrl: 'https://cubence.com/docs',
     tags: ['国内直连', 'Claude Code', 'Codex', 'Gemini', '支持发票', '高速稳定'],
@@ -207,7 +208,7 @@ const INITIAL_PLATFORMS: Platform[] = [
     website: 'https://timicc.com',
     apiBaseUrl: 'https://timicc.com/v1',
     registerUrl: 'https://timicc.cn/register?ref=YOUR_CODE',
-    inviteCode: '',
+    inviteCode: '9PQSBDYP',
     dashboardUrl: 'https://timicc.com/dashboard',
     tags: ['国内直连', 'Claude Code', 'Codex', '高性价比', '支持发票', '支持退款'],
     pros: ['Claude Sonnet ¥4.5/M 价格实惠', '支持开票（20元起）', '客服高强度在线', '缓存率 93%+', '导出使用记录'],
@@ -231,7 +232,7 @@ const INITIAL_PLATFORMS: Platform[] = [
     website: 'https://www.aicodemirror.com',
     apiBaseUrl: 'https://api.aicodemirror.com/v1',
     registerUrl: 'https://www.aicodemirror.com/register?invitecode=YOUR_CODE',
-    inviteCode: '',
+    inviteCode: 'S2V4HO',
     dashboardUrl: 'https://www.aicodemirror.com/dashboard',
     docUrl: 'https://www.aicodemirror.com/docs',
     tags: ['国内直连', 'Claude Code', 'Codex', 'Gemini', 'JetBrains', '支持发票', '额度不过期'],
@@ -285,7 +286,7 @@ const INITIAL_PLATFORMS: Platform[] = [
     website: 'https://weelinking.com',
     apiBaseUrl: 'https://api.weelinking.com/v1',
     registerUrl: 'https://api.weelinking.com/register?aff=YOUR_CODE',
-    inviteCode: '',
+    inviteCode: '3UJqPQjs',
     dashboardUrl: 'https://weelinking.com/dashboard',
     tags: ['国内直连', '200+模型', 'Claude', 'GPT', 'Gemini', 'Codex', '统一密钥'],
     pros: ['200+ 模型统一接入', '一个密钥管理所有模型', '国内直连', '注册送额度'],
@@ -316,46 +317,69 @@ const INITIAL_PLATFORMS: Platform[] = [
     since: '2025-06',
     featured: false, sortOrder: 14,
   }),
-  // ── 综合通用中转站（海外）──────────────────────────────────
+  // ── 自营推理平台（海外/国内）────────────────────────────────
   makePlatform({
     id: 'groq',
     name: 'Groq',
-    description: 'LPU 推理芯片，推理速度全球最快（>800 tokens/s），开源模型免费额度极慷慨',
+    description: '自营 LPU 推理平台，推理速度全球最快（>800 tokens/s），开源模型每日免费额度极慷慨，非中转站',
     website: 'https://groq.com',
     apiBaseUrl: 'https://api.groq.com/openai/v1',
     registerUrl: 'https://console.groq.com',
     inviteCode: '',
     dashboardUrl: 'https://console.groq.com/keys',
     docUrl: 'https://console.groq.com/docs',
-    tags: ['海外', '超快速度', '免费额度', 'Llama', 'DeepSeek R1', '开源模型'],
+    tags: ['海外', '自营推理', '超快速度', '免费额度', 'Llama', 'DeepSeek R1', '开源模型'],
     pros: ['推理速度全球最快（>800 tokens/s）', '每日免费配额极慷慨', '稳定性高', 'OpenAI 格式兼容'],
-    cons: ['国内需代理', '仅开源模型，不支持 GPT/Claude'],
+    cons: ['国内需代理', '仅开源模型，不支持 GPT/Claude', '自营平台非中转站'],
     pricing: { type: 'postpaid', priceNote: '慷慨的每日免费配额，用完按量极低价', freeCredit: '每日免费配额' },
     accessType: 'proxy',
     keyModels: ['Llama 3.3 70B', 'DeepSeek R1 Distill 70B', 'Mixtral 8x7B', 'Gemma2 9B'],
     paymentMethods: ['信用卡'],
     since: '2024-02',
+    category: 'inference',
     featured: false, sortOrder: 15,
   }),
   makePlatform({
     id: 'together',
     name: 'Together AI',
-    description: '100+ 开源模型聚合，注册送 $25 额度，支持模型微调，开发者和研究者首选',
+    description: '自营开源模型推理平台，100+ 开源模型，注册送 $25，支持模型微调，非中转站',
     website: 'https://together.ai',
     apiBaseUrl: 'https://api.together.xyz/v1',
     registerUrl: 'https://api.together.ai/signup?referral=YOUR_CODE',
     inviteCode: '',
     dashboardUrl: 'https://api.together.ai/settings/api-keys',
     docUrl: 'https://docs.together.ai',
-    tags: ['海外', '100+开源模型', '支持微调', 'Llama', 'DeepSeek', '注册送$25'],
+    tags: ['海外', '自营推理', '100+开源模型', '支持微调', 'Llama', 'DeepSeek', '注册送$25'],
     pros: ['开源模型覆盖极全', '支持模型微调 Fine-tuning', '注册赠送 $25 额度', '价格极低'],
-    cons: ['国内需代理', '不支持 GPT/Claude 等闭源模型'],
+    cons: ['国内需代理', '不支持 GPT/Claude 等闭源模型', '自营平台非中转站'],
     pricing: { type: 'postpaid', priceNote: '按量计费，开源模型价格极低', freeCredit: '注册赠送 $25 额度' },
     accessType: 'proxy',
     keyModels: ['Llama 3.1 405B', 'DeepSeek V3', 'Qwen2.5 72B', 'Mistral 7B'],
     paymentMethods: ['信用卡'],
     since: '2023-06',
+    category: 'inference',
     featured: false, sortOrder: 16,
+  }),
+  makePlatform({
+    id: 'siliconflow',
+    name: '硅基流动',
+    description: '国内最热门开源模型推理平台，Qwen/DeepSeek/Llama 价格极低，注册送免费额度，国内直连，自营非中转',
+    website: 'https://siliconflow.cn',
+    apiBaseUrl: 'https://api.siliconflow.cn/v1',
+    registerUrl: 'https://cloud.siliconflow.cn/i/YOUR_CODE',
+    inviteCode: 'C6qGRmUO',
+    dashboardUrl: 'https://cloud.siliconflow.cn/account/ak',
+    docUrl: 'https://docs.siliconflow.cn',
+    tags: ['国内直连', '自营推理', 'Qwen', 'DeepSeek', 'Llama', '免费额度', '开源模型'],
+    pros: ['开源模型价格业内最低', '注册送免费额度', '国内直连无需代理', '模型更新极快', '稳定性高'],
+    cons: ['不支持 GPT/Claude 等闭源模型', '自营推理平台非中转站'],
+    pricing: { type: 'postpaid', priceNote: '开源模型按量极低价，部分模型永久免费', freeCredit: '注册送免费额度' },
+    accessType: 'direct',
+    keyModels: ['Qwen2.5 72B', 'DeepSeek V3', 'DeepSeek R1', 'Llama 3.3 70B'],
+    paymentMethods: ['支付宝', '微信'],
+    since: '2024-01',
+    category: 'inference',
+    featured: false, sortOrder: 17,
   }),
   makePlatform({
     id: 'chatanywhere',
@@ -374,35 +398,354 @@ const INITIAL_PLATFORMS: Platform[] = [
     keyModels: ['gpt-3.5-turbo'],
     paymentMethods: [],
     since: '2023-04',
-    featured: false, sortOrder: 17,
+    category: 'relay',
+    featured: false, sortOrder: 18,
+  }),
+  // ── 补录国内中转站 ─────────────────────────────────────────
+  makePlatform({
+    id: 'yunwuapi',
+    name: '云雾API',
+    description: '国内老牌综合中转，Claude/GPT/Gemini 全覆盖，按量后付，价格有竞争力，国内直连',
+    website: 'https://yunwu.ai',
+    apiBaseUrl: 'https://yunwu.ai/v1',
+    registerUrl: 'https://yunwu.ai/register?aff=YOUR_CODE',
+    inviteCode: '11PmyB',
+    dashboardUrl: 'https://yunwu.ai/dashboard',
+    tags: ['国内直连', 'Claude', 'GPT', 'Gemini', '按量计费'],
+    pros: ['价格有竞争力', '多模型覆盖', '国内直连', '按量灵活'],
+    cons: ['社区规模较小', '知名度相对较低'],
+    pricing: { type: 'postpaid', priceNote: '按 Token 按量计费' },
+    accessType: 'direct',
+    keyModels: ['Claude 3.5 Sonnet', 'GPT-4o', 'Gemini 1.5 Pro', 'DeepSeek V3'],
+    paymentMethods: ['支付宝', '微信'],
+    since: '2024-02',
+    category: 'relay',
+    featured: false, sortOrder: 19,
+  }),
+  makePlatform({
+    id: 'ppio',
+    name: 'PPIO',
+    description: '算力基础设施+AI API 中转，Claude/DeepSeek/Llama 全覆盖，支持 Claude Code，国内直连',
+    website: 'https://ppinfra.com',
+    apiBaseUrl: 'https://api.ppinfra.com/v3/openai',
+    registerUrl: 'https://ppinfra.com/user/register?code=YOUR_CODE',
+    inviteCode: '',
+    dashboardUrl: 'https://ppinfra.com/model-api/overview',
+    docUrl: 'https://ppinfra.com/docs',
+    tags: ['国内直连', 'Claude Code', 'DeepSeek', 'Llama', '算力基础设施', '按量计费'],
+    pros: ['自有算力基础设施，稳定性强', 'Claude Code 支持完善', '国内直连', '价格有竞争力'],
+    cons: ['注册流程略复杂', '文档分散不集中'],
+    pricing: { type: 'postpaid', priceNote: '按量计费，价格有竞争力' },
+    accessType: 'direct',
+    keyModels: ['Claude Sonnet 4.6', 'DeepSeek V3', 'Llama 3.3 70B', 'Qwen2.5 72B'],
+    paymentMethods: ['支付宝', '微信', '信用卡'],
+    since: '2024-03',
+    category: 'relay',
+    featured: false, sortOrder: 20,
+  }),
+  makePlatform({
+    id: 'laozhang',
+    name: '老张API',
+    description: '社区知名综合中转，GPT/Claude/Gemini 全支持，价格实惠，稳定可靠，国内直连',
+    website: 'https://laozhang.ai',
+    apiBaseUrl: 'https://api.laozhang.ai/v1',
+    registerUrl: 'https://laozhang.ai/register?aff=YOUR_CODE',
+    inviteCode: '',
+    dashboardUrl: 'https://laozhang.ai/dashboard',
+    tags: ['国内直连', 'GPT', 'Claude', 'Gemini', '社区推荐', '实惠价格'],
+    pros: ['价格实惠', '社区口碑好', '国内直连', '多模型覆盖'],
+    cons: ['非商业化运营，可靠性依赖运营者', '新用户发现渠道较少'],
+    pricing: { type: 'prepaid', priceNote: '充值按量计费，价格实惠', freeCredit: '注册送少量额度' },
+    accessType: 'direct',
+    keyModels: ['GPT-4o', 'Claude 3.5 Sonnet', 'Gemini 1.5 Pro', 'DeepSeek V3'],
+    paymentMethods: ['支付宝', '微信'],
+    since: '2024-04',
+    category: 'relay',
+    featured: false, sortOrder: 21,
+  }),
+  makePlatform({
+    id: 'openkey',
+    name: 'OpenKey',
+    description: '国内老牌 OpenAI 专属中转，运营稳定，价格透明，按量计费，兼容 OpenAI 格式，国内直连',
+    website: 'https://openkey.cloud',
+    apiBaseUrl: 'https://openkey.cloud/v1',
+    registerUrl: 'https://openkey.cloud/register?invite=YOUR_CODE',
+    inviteCode: '3EMMT',
+    dashboardUrl: 'https://openkey.cloud/dashboard',
+    tags: ['国内直连', 'GPT', '老牌平台', '价格透明', '稳定'],
+    pros: ['运营稳定，口碑良好', '价格透明公开', '国内直连', '完全兼容 OpenAI 格式'],
+    cons: ['主要集中 GPT 系列', 'Claude/Gemini 覆盖相对有限'],
+    pricing: { type: 'prepaid', priceNote: '按 Token 按量，价格透明' },
+    accessType: 'direct',
+    keyModels: ['GPT-4o', 'GPT-4o mini', 'o1', 'GPT-3.5 Turbo'],
+    paymentMethods: ['支付宝', '微信'],
+    since: '2023-08',
+    category: 'relay',
+    featured: false, sortOrder: 22,
+  }),
+  makePlatform({
+    id: 'yescale',
+    name: 'YesScale',
+    description: '国内中转，支持 Claude/GPT/Gemini/DeepSeek，按量后付，界面简洁，国内直连',
+    website: 'https://yescale.io',
+    apiBaseUrl: 'https://api.yescale.io/v1',
+    registerUrl: 'https://yescale.io/register?invite=YOUR_CODE',
+    inviteCode: '',
+    dashboardUrl: 'https://yescale.io/dashboard',
+    tags: ['国内直连', 'Claude', 'GPT', 'Gemini', 'DeepSeek', '按量计费'],
+    pros: ['界面简洁易用', '多模型支持', '国内直连', '按量灵活无最低消费'],
+    cons: ['平台较新，稳定性有待观察', '社区规模待建立'],
+    pricing: { type: 'postpaid', priceNote: '按量计费，无最低消费' },
+    accessType: 'direct',
+    keyModels: ['Claude 3.5 Sonnet', 'GPT-4o', 'Gemini 1.5 Pro', 'DeepSeek V3'],
+    paymentMethods: ['支付宝', '微信'],
+    since: '2024-06',
+    category: 'relay',
+    featured: false, sortOrder: 23,
+  }),
+  makePlatform({
+    id: 'bltcy',
+    name: '硬地骨头',
+    description: 'Claude 专属高性价比中转，价格低于官方，支持 Claude Code，国内直连，社区活跃',
+    website: 'https://bltcy.ai',
+    apiBaseUrl: 'https://api.bltcy.ai/v1',
+    registerUrl: 'https://bltcy.ai/register?aff=YOUR_CODE',
+    inviteCode: '',
+    dashboardUrl: 'https://bltcy.ai/dashboard',
+    tags: ['国内直连', 'Claude Code', 'Claude专属', '高性价比', '社区活跃'],
+    pros: ['Claude 系列价格极具竞争力', '支持 Claude Code', '国内直连', '社区口碑好'],
+    cons: ['主要支持 Claude，其他模型有限', '平台较新'],
+    pricing: { type: 'postpaid', priceNote: '按量计费，价格低于官方' },
+    accessType: 'direct',
+    keyModels: ['Claude Sonnet 4.6', 'Claude Opus 4', 'Claude Haiku 3.5'],
+    paymentMethods: ['支付宝', '微信'],
+    since: '2025-02',
+    category: 'relay',
+    featured: false, sortOrder: 24,
+  }),
+  makePlatform({
+    id: 'chatfire',
+    name: 'ChatFire',
+    description: '综合 AI API 中转，支持 GPT/Claude/Gemini/DeepSeek，价格实惠，国内直连',
+    website: 'https://chatfire.cn',
+    apiBaseUrl: 'https://api.chatfire.cn/v1',
+    registerUrl: 'https://chatfire.cn/register?aff=YOUR_CODE',
+    inviteCode: '',
+    dashboardUrl: 'https://chatfire.cn/dashboard',
+    tags: ['国内直连', 'GPT', 'Claude', 'Gemini', 'DeepSeek', '实惠价格'],
+    pros: ['价格实惠', '多模型覆盖', '国内直连', '简洁易用'],
+    cons: ['平台知名度较低', '社区规模较小'],
+    pricing: { type: 'postpaid', priceNote: '按量计费，价格实惠' },
+    accessType: 'direct',
+    keyModels: ['GPT-4o', 'Claude 3.5 Sonnet', 'Gemini 1.5 Pro', 'DeepSeek V3'],
+    paymentMethods: ['支付宝', '微信'],
+    since: '2024-05',
+    category: 'relay',
+    featured: false, sortOrder: 25,
+  }),
+  makePlatform({
+    id: 'poixe',
+    name: 'Poixe AI',
+    description: '供需双方聚合平台，用户可调 API 也可供应 API 赚收益，ChatGPT/DeepSeek/Claude/Gemini/Grok 全覆盖，全球 CDN 高可用，支持免费模型每日配额',
+    website: 'https://poixe.com',
+    apiBaseUrl: 'https://api.poixe.com',
+    registerUrl: 'https://poixe.com/register?invite=YOUR_CODE',
+    inviteCode: 'r5vpli',
+    dashboardUrl: 'https://poixe.com/products/user',
+    docUrl: 'https://docs.poixe.com/cn',
+    tags: ['均可访问', 'ChatGPT', 'DeepSeek', 'Claude', 'Gemini', 'Grok', '供应商入驻', '免费模型'],
+    pros: ['供需双方模式，成本更低', '免费模型每日配额（无需充值）', '企业级高可用架构', '全球 CDN 加速', '支持合同发票'],
+    cons: ['服务器在美东+日本，非纯国内站', 'CDN 有 120 秒强制超时限制'],
+    pricing: { type: 'postpaid', priceNote: '按量后付，账户等级越高折扣越大', freeCredit: '每日免费模型配额（大杯/小杯两档）' },
+    accessType: 'both',
+    keyModels: ['ChatGPT', 'Claude', 'DeepSeek', 'Gemini', 'Grok'],
+    paymentMethods: ['支付宝', '微信', '信用卡'],
+    since: '2024-12',
+    category: 'relay',
+    featured: false, sortOrder: 26,
+  }),
+  makePlatform({
+    id: 'codexgateway',
+    name: 'Codex Proxy',
+    description: '统一 AI API Gateway，Claude/GPT/Gemini/Codex 多渠道自动故障切换，新用户注册送 $1 额度，请求状态可视化',
+    website: 'https://codex.miaomiaocode.com',
+    apiBaseUrl: 'https://codex.miaomiaocode.com/v1',
+    registerUrl: 'https://codex.miaomiaocode.com/register?invite=YOUR_CODE',
+    inviteCode: '',
+    dashboardUrl: 'https://codex.miaomiaocode.com',
+    tags: ['国内直连', 'Claude', 'GPT', 'Gemini', 'Codex', '多渠道切换', '注册送额度'],
+    pros: ['多渠道自动故障切换，稳定性强', '新用户注册送 $1 额度', '请求状态可视化追踪', '统一密钥管理'],
+    cons: ['平台较新，社区规模待建立', '免费额度仅 1 天有效'],
+    pricing: { type: 'postpaid', priceNote: '按量计费', freeCredit: '新用户注册送 $1 额度（1天有效）' },
+    accessType: 'direct',
+    keyModels: ['Claude Sonnet 4.6', 'GPT-5.5', 'GPT-5.4', 'gpt-5.3-codex', 'Gemini'],
+    paymentMethods: ['支付宝', '信用卡'],
+    since: '2025-09',
+    category: 'relay',
+    featured: false, sortOrder: 27,
+  }),
+  makePlatform({
+    id: 'codexzh',
+    name: 'CodexZH',
+    description: 'Codex 专属包月中转，香港优化线路国内直连，支持 CLI/VSCode/Cursor/OpenCode，MCP 生态，每日额度自动刷新，支付宝购买可开票',
+    website: 'https://codexzh.com',
+    apiBaseUrl: 'https://api.codexzh.com/v1',
+    registerUrl: 'https://codexzh.com/register?invite=YOUR_CODE',
+    inviteCode: '1F4520',
+    dashboardUrl: 'https://codexzh.com',
+    docUrl: 'https://docs.codexzh.com/codex',
+    tags: ['国内直连', 'Codex专属', '包月订阅', 'GPT', 'MCP', '支持发票', '香港线路'],
+    pros: ['包月固定费用无需担心用量', '香港优化线路稳定直连', '支持 Cursor/VSCode/CLI/OpenCode', 'MCP 生态支持', '支付宝购买可开发票'],
+    cons: ['仅支持 GPT/Codex 系列，Claude 需另用 ccodezh.com', '每分钟限 35 次请求', '包月价格较高（$60/月）'],
+    pricing: {
+      type: 'mixed',
+      priceNote: 'Token 价格与官方一致：输入 $1.25/M · 缓存 $0.125/M · 输出 $10/M',
+      plans: [
+        { name: '包月套餐', price: '$60/月', note: '约 700-2000 次对话，约 8800 万 token，每日自动刷新' },
+      ],
+    },
+    accessType: 'direct',
+    keyModels: ['gpt-5.3-codex', 'GPT-5.4', 'GPT-5.5', 'GPT-4o'],
+    paymentMethods: ['支付宝'],
+    since: '2025-10',
+    category: 'relay',
+    featured: false, sortOrder: 28,
   }),
 ]
 
+const DATA_DIR = path.dirname(DB_PATH)
+const BACKUP_DIR = path.join(DATA_DIR, 'backups')
+const MAX_BACKUPS = 10
+
 function ensureDataDir() {
-  const dir = path.dirname(DB_PATH)
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
+  if (!fs.existsSync(BACKUP_DIR)) fs.mkdirSync(BACKUP_DIR, { recursive: true })
 }
+
+/** 原子写：先写 .tmp 再 rename，避免半截 JSON */
+function atomicWrite(filePath: string, content: string) {
+  const tmp = `${filePath}.tmp`
+  fs.writeFileSync(tmp, content)
+  fs.renameSync(tmp, filePath)
+}
+
+/** 复制当前 db.json 到 backups/db-<ISO>.json，按 mtime 保留最近 MAX_BACKUPS 份 */
+function snapshotBackup(reason: string) {
+  if (!fs.existsSync(DB_PATH)) return
+  ensureDataDir()
+  const ts = new Date().toISOString().replace(/[:.]/g, '-')
+  const target = path.join(BACKUP_DIR, `db-${ts}-${reason}.json`)
+  try {
+    fs.copyFileSync(DB_PATH, target)
+  } catch (e) {
+    console.warn('[db] backup failed:', e)
+    return
+  }
+  const files = fs.readdirSync(BACKUP_DIR)
+    .filter(f => f.startsWith('db-') && f.endsWith('.json'))
+    .map(f => ({ f, t: fs.statSync(path.join(BACKUP_DIR, f)).mtimeMs }))
+    .sort((a, b) => b.t - a.t)
+  for (const old of files.slice(MAX_BACKUPS)) {
+    try { fs.unlinkSync(path.join(BACKUP_DIR, old.f)) } catch {}
+  }
+}
+
+/** 找最近一份可用备份 */
+function loadLatestBackup(): DB | null {
+  if (!fs.existsSync(BACKUP_DIR)) return null
+  const files = fs.readdirSync(BACKUP_DIR)
+    .filter(f => f.startsWith('db-') && f.endsWith('.json'))
+    .map(f => ({ f, t: fs.statSync(path.join(BACKUP_DIR, f)).mtimeMs }))
+    .sort((a, b) => b.t - a.t)
+  for (const { f } of files) {
+    try {
+      return JSON.parse(fs.readFileSync(path.join(BACKUP_DIR, f), 'utf-8')) as DB
+    } catch {}
+  }
+  return null
+}
+
+/**
+ * 把 INITIAL_PLATFORMS 增量合并进现有 db。
+ * 规则（"仅补缺"策略）：
+ *   - db 中不存在 id 的平台 → 整条插入
+ *   - 已存在的平台 → 不动其它字段，只在 inviteCode 为空时用代码值补上
+ * 返回是否发生了变化（用于决定是否回写磁盘）
+ */
+function mergeSeed(db: DB): boolean {
+  let mutated = false
+  const byId = new Map(db.platforms.map(p => [p.id, p]))
+  for (const seed of INITIAL_PLATFORMS) {
+    const existing = byId.get(seed.id)
+    if (!existing) {
+      db.platforms.push(seed)
+      mutated = true
+      console.log(`[db] seed merge: insert new platform "${seed.id}"`)
+      continue
+    }
+    if (!existing.inviteCode && seed.inviteCode) {
+      existing.inviteCode = seed.inviteCode
+      existing.updatedAt = new Date().toISOString()
+      mutated = true
+      console.log(`[db] seed merge: fill empty inviteCode for "${seed.id}"`)
+    }
+  }
+  return mutated
+}
+
+let seedMerged = false
 
 export function readDB(): DB {
   ensureDataDir()
+
   if (!fs.existsSync(DB_PATH)) {
-    const initial: DB = { platforms: INITIAL_PLATFORMS, clicks: [] }
-    fs.writeFileSync(DB_PATH, JSON.stringify(initial, null, 2))
+    const initial: DB = { platforms: [...INITIAL_PLATFORMS], clicks: [] }
+    atomicWrite(DB_PATH, JSON.stringify(initial, null, 2))
+    seedMerged = true
     return initial
   }
+
+  let db: DB
   try {
-    return JSON.parse(fs.readFileSync(DB_PATH, 'utf-8')) as DB
+    db = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8')) as DB
   } catch {
-    console.warn('[db] db.json 损坏，重置为初始数据')
-    const initial: DB = { platforms: INITIAL_PLATFORMS, clicks: [] }
-    fs.writeFileSync(DB_PATH, JSON.stringify(initial, null, 2))
-    return initial
+    console.warn('[db] db.json 损坏，尝试从最近备份恢复')
+    const restored = loadLatestBackup()
+    if (restored) {
+      console.warn('[db] 已从备份恢复 db.json')
+      db = restored
+      atomicWrite(DB_PATH, JSON.stringify(db, null, 2))
+    } else {
+      console.warn('[db] 无可用备份，回退到 INITIAL_PLATFORMS')
+      db = { platforms: [...INITIAL_PLATFORMS], clicks: [] }
+      atomicWrite(DB_PATH, JSON.stringify(db, null, 2))
+    }
   }
+
+  if (!Array.isArray(db.platforms)) db.platforms = []
+  if (!Array.isArray(db.clicks)) db.clicks = []
+
+  if (!seedMerged) {
+    const mutated = mergeSeed(db)
+    seedMerged = true
+    if (mutated) {
+      snapshotBackup('pre-seed-merge')
+      atomicWrite(DB_PATH, JSON.stringify(db, null, 2))
+    }
+  }
+
+  return db
 }
 
-export function writeDB(db: DB): void {
+/**
+ * 写入数据库。
+ * @param opts.backup true 时（管理后台变更类操作使用）先做一份快照备份；
+ *                    checker / 点击计数等高频写入不传此项以减少磁盘 churn。
+ */
+export function writeDB(db: DB, opts: { backup?: boolean } = {}): void {
   ensureDataDir()
-  fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2))
+  if (opts.backup) snapshotBackup('admin')
+  atomicWrite(DB_PATH, JSON.stringify(db, null, 2))
 }
 
 export function getPlatforms(): Platform[] {
@@ -421,7 +764,7 @@ export function upsertPlatform(platform: Platform): void {
   } else {
     db.platforms.push(platform)
   }
-  writeDB(db)
+  writeDB(db, { backup: true })
 }
 
 export function updatePlatformStatus(id: string, status: Platform['status'], latency?: number, models?: string[]) {
@@ -453,5 +796,13 @@ export function recordClick(platformId: string, userAgent?: string): void {
 export function deletePlatform(id: string): void {
   const db = readDB()
   db.platforms = db.platforms.filter(p => p.id !== id)
-  writeDB(db)
+  writeDB(db, { backup: true })
+}
+
+/** 全量替换数据库（用于 import 接口），强制备份 */
+export function replaceDB(db: DB): void {
+  if (!db || !Array.isArray(db.platforms) || !Array.isArray(db.clicks)) {
+    throw new Error('invalid DB shape')
+  }
+  writeDB(db, { backup: true })
 }

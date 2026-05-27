@@ -3,6 +3,9 @@ export type PlatformStatus = 'online' | 'degraded' | 'offline' | 'unknown'
 /** 国内访问方式 */
 export type AccessType = 'direct' | 'proxy' | 'both'
 
+/** 平台类型：中转站 / 自营推理平台 / 全球聚合器 */
+export type PlatformCategory = 'relay' | 'inference' | 'aggregator'
+
 export interface SubscriptionPlan {
   name: string    // 套餐名 e.g. "基础版"
   price: string   // 价格 e.g. "¥238/月"
@@ -43,6 +46,8 @@ export interface Platform {
   paymentMethods: string[]
   /** 平台上线/运营起始时间 e.g. '2023-06' */
   since?: string
+  /** 平台类型：relay=中转站, inference=自营推理平台, aggregator=全球聚合器 */
+  category?: PlatformCategory
   featured: boolean
   sortOrder: number
   // Auto-maintained fields

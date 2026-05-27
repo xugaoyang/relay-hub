@@ -1,12 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Zap, LayoutGrid, GitCompareArrows, Settings } from 'lucide-react'
+import { Zap, LayoutGrid, GitCompareArrows } from 'lucide-react'
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const loc = useLocation()
   const nav = [
     { to: '/', label: '平台列表', icon: <LayoutGrid size={15} /> },
     { to: '/compare', label: '对比分析', icon: <GitCompareArrows size={15} /> },
-    { to: '/admin', label: '管理后台', icon: <Settings size={15} /> },
   ]
   return (
     <div className="min-h-screen flex flex-col">
